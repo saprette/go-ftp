@@ -1,6 +1,6 @@
 package filesystem
 
-import "../common"
+import "github.com/unloadedroe/common"
 
 type File struct {
 	filename string
