@@ -2,18 +2,18 @@ package common
 
 const MAX_CHUNK_SIZE = 1024
 
-type Chunck struct {
+type Chunk struct {
 	len     int64
 	Content []byte
 }
 
-func NewChunck() *Chunck {
-	chunck := new(Chunck)
-	chunck.len = 0
-	chunck.Content = make([]byte, MAX_CHUNK_SIZE)
-	return chunck
+func NewChunk() *Chunk {
+	chunk := new(Chunk)
+	chunk.len = 0
+	chunk.Content = make([]byte, MAX_CHUNK_SIZE)
+	return chunk
 }
 
-func (c *Chunck) GetLen() int64 {
+func (c *Chunk) GetLen() int64 {
 	return c.len
 }

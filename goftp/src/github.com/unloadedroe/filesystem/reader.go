@@ -33,15 +33,15 @@ func NewReader(path *Path) *Reader {
 	return reader
 }
 
-func (r Reader) ReadChunck() *common.Chunck {
-	chunk := common.NewChunck()
+func (r Reader) ReadChunk() *common.Chunk {
+	chunk := common.NewChunk()
 	r.read(chunk)
 	return chunk
 }
 
-func (r Reader) read(chunck *common.Chunck) {
-	if chunck != nil && chunck.Content != nil{
-		numRead, err := r.reader.Read(chunck.Content)
+func (r Reader) read(chunk *common.Chunk) {
+	if chunk != nil && chunk.Content != nil{
+		numRead, err := r.reader.Read(chunk.Content)
 		if err != nil && err != io.EOF {
 			panic(err)
 		}

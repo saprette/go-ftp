@@ -8,18 +8,15 @@ type FileSystem struct {
 	reader *Reader
 }
 
-var fileSystem *FileSystem
 
-func initFileSystem(path *Path) {
-	if fileSystem == nil {
-		fileSystem = new(FileSystem)
-        fileSystem.reader = NewReader(path)
-	}
+func NewFileSystem(path *Path) *FileSystem {
+	fileSystem := new(FileSystem)
+	fileSystem.reader = NewReader(path)
+	return fileSystem
 }
 
-func Read(filename *Path) *common.Chunck {
-	initFileSystem(filename)
-	return fileSystem.reader.ReadChunck()
+func (f FileSystem) Read(filename *Path) *common.Chunk {
+	return f.reader.ReadChunk()
 }
 
 func Write(filename *Path) {
