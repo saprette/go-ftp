@@ -17,3 +17,7 @@ func NewChunk() *Chunk {
 func (c *Chunk) GetLen() int64 {
 	return c.len
 }
+
+func (c *Chunk) SetLen(length int64) {
+	c.len = length
+}

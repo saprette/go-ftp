@@ -40,7 +40,7 @@ func (r Reader) ReadChunk() *common.Chunk {
 }
 
 func (r Reader) read(chunk *common.Chunk) {
-	if chunk != nil && chunk.Content != nil{
+	if chunk != nil && chunk.Content != nil {
 		numRead, err := r.reader.Read(chunk.Content)
 		if err != nil && err != io.EOF {
 			panic(err)
@@ -48,6 +48,7 @@ func (r Reader) read(chunk *common.Chunk) {
 	    if numRead == 0 {
 	        r.closeFile()
 	    } else {
+	    	chunk.SetLen(int64(numRead))
 		    r.offset = r.offset + numRead
 	    }
 	}

@@ -6,21 +6,30 @@ import (
 
 type FileSystem struct {
 	reader *Reader
+	writer *Writer
 }
 
-
-func NewFileSystem(path *Path) *FileSystem {
+func NewFileSystemReadMode(path *Path) *FileSystem {
 	fileSystem := new(FileSystem)
 	fileSystem.reader = NewReader(path)
 	return fileSystem
 }
 
-func (f FileSystem) Read(filename *Path) *common.Chunk {
+func NewFileSystemWriteMode(path *Path) *FileSystem {
+	fileSystem := new(FileSystem)
+	fileSystem.writer = NewWriter(path)
+	return fileSystem
+}
+
+func (f FileSystem) Read() *common.Chunk {
 	return f.reader.ReadChunk()
 }
 
-func Write(filename *Path) {
-
+func (f FileSystem) Write(chunk *common.Chunk, done bool) {
+	f.writer.Write(chunk)
+	if done {
+		f.writer.Done()
+	}
 }
 
 func Delete(filename *Path) {
