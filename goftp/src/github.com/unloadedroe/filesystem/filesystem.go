@@ -25,11 +25,12 @@ func (f FileSystem) Read() *common.Chunk {
 	return f.reader.ReadChunk()
 }
 
-func (f FileSystem) Write(chunk *common.Chunk, done bool) {
+func (f FileSystem) Write(chunk *common.Chunk) {
 	f.writer.Write(chunk)
-	if done {
-		f.writer.Done()
-	}
+}
+
+func (f FileSystem) CloseWriter() {
+	f.writer.Done()
 }
 
 func Delete(filename *Path) {

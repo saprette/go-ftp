@@ -39,11 +39,13 @@ func (w Writer) Write(chunk *common.Chunk) {
 
 
 func (w Writer) Done() {
-	if err := w.writer.Flush(); err != nil {
-        panic(err)
-    }
-	if err := w.file.Close(); err != nil {
-		panic(err)
+	if w.writer != nil {
+		if err := w.writer.Flush(); err != nil {
+	        panic(err)
+	    }
+		if err := w.file.Close(); err != nil {
+			panic(err)
+		}
+		w.writer = nil
 	}
-	w.writer = nil
 }

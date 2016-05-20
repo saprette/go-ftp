@@ -1,0 +1,6 @@
+goftp/src/github.com/unloadedroe/filesystem_test/test/file_*.test
+.idea/
+GoFTP.iml
+goftp/bin/
+goftp/pkg/
+
