@@ -1,8 +1,8 @@
 package filesystem
 
 import (
-	"github.com/unloadedroe/common"
 	"bufio"
+	"github.com/unloadedroe/common"
 	"io"
 	"os"
 )
@@ -45,12 +45,12 @@ func (r Reader) read(chunk *common.Chunk) {
 		if err != nil && err != io.EOF {
 			panic(err)
 		}
-	    if numRead == 0 {
-	        r.closeFile()
-	    } else {
-	    	chunk.SetLen(int64(numRead))
-		    r.offset = r.offset + numRead
-	    }
+		if numRead == 0 {
+			r.closeFile()
+		} else {
+			chunk.SetLen(numRead)
+			r.offset = r.offset + numRead
+		}
 	}
 }
 

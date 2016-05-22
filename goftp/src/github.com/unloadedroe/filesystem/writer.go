@@ -1,8 +1,8 @@
 package filesystem
 
 import (
-	"github.com/unloadedroe/common"
 	"bufio"
+	"github.com/unloadedroe/common"
 	"os"
 )
 
@@ -31,18 +31,17 @@ func NewWriter(path *Path) *Writer {
 }
 
 func (w Writer) Write(chunk *common.Chunk) {
-	n := chunk.GetLen()
+	n := chunk.Len()
 	if _, err := w.writer.Write(chunk.Content[:n]); err != nil {
 		panic(err)
-    }
+	}
 }
-
 
 func (w Writer) Done() {
 	if w.writer != nil {
 		if err := w.writer.Flush(); err != nil {
-	        panic(err)
-	    }
+			panic(err)
+		}
 		if err := w.file.Close(); err != nil {
 			panic(err)
 		}

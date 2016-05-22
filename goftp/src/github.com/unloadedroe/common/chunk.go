@@ -4,13 +4,13 @@ const MAX_CHUNK_SIZE int = 1024
 
 type Chunk struct {
 	len     int
-	Content []int
+	Content []byte
 }
 
 func NewChunk() *Chunk {
 	chunk := new(Chunk)
 	chunk.len = 0
-	chunk.Content = make([]int, MAX_CHUNK_SIZE)
+	chunk.Content = make([]byte, MAX_CHUNK_SIZE)
 	return chunk
 }
 
@@ -22,7 +22,7 @@ func (c *Chunk) SetLen(length int) {
 	c.len = length
 }
 
-func (c *Chunk) SetContent(content *[]int, size int) {
+func (c *Chunk) SetContent(content *[]byte, size int) {
 	c.Content = *content
 	c.len = size
 }
